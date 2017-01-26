@@ -15,4 +15,19 @@ func main() {
 	fmt.Println(k)
 
 	fmt.Printf("194 = %b\n", 194)
+
+	anonFunc := getFunc()
+
+	anonFunc()
+}
+
+func getFunc() func() {
+	var x int
+
+	myFunc := func() {
+		x = 1
+		fmt.Println(x)
+	}
+	x = 100
+	return myFunc
 }
