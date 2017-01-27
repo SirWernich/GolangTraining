@@ -5,6 +5,8 @@ import "fmt"
 func half(x int) (int, bool) {
 	ans := x / 2
 	even := x%2 == 0
+
+	// would be slightly quicker to do the math as part of the return
 	return ans, even
 }
 

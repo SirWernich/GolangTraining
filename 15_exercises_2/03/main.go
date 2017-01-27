@@ -4,8 +4,10 @@ import "fmt"
 
 func findGreatest(list ...int) int {
 	var greatest int
-	for _, x := range list {
-		if x > greatest {
+	for i, x := range list {
+		// if x > greatest {
+		// give it a starting point at least
+		if x > greatest || i == 0 {
 			greatest = x
 		}
 	}
