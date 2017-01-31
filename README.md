@@ -1,4 +1,4 @@
-# UdemyTraining
+# GolangTraining
 
 Following along with Todd McLeod's Go programming course on Udemy.
 
