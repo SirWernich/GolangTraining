@@ -10,6 +10,7 @@ func main() {
 
 	go func() {
 		for i := 0; i < 10; i++ {
+			fmt.Println("adding to channel :", i)
 			c <- i
 		}
 		close(c)
@@ -20,7 +21,7 @@ func main() {
 	fmt.Println("number of logical CPUs usable by the current process", runtime.NumCPU())
 
 	for n := range c {
-		fmt.Println(n)
+		fmt.Println("retrieving from channel:", n)
 	}
 
 	fmt.Println("AFTER")
