@@ -51,3 +51,11 @@ func main() {
 	info(r)
 	info(s)
 }
+
+/*
+	to satisfy the requirements to be a "BlockShape", a value needs to
+	have an implementation for both the longestSide and shortestSide
+	methods. if you comment out one of those methods for a type, then
+	that type will no longer possess all the methods needed to belong
+	to the BlockShape type, to it cannot use the "info" method.
+*/
