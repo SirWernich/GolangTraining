@@ -11,7 +11,7 @@ type sliceStruct struct {
 	SliceInterface
 }
 
-func (ss sliceStruct) ChangeFirstItem(str string) {
+func (ss *sliceStruct) ChangeFirstItem(str string) {
 	fmt.Println("sliceStruct 'changeFirstItem' method is called first, then it calls the SliceInterface's method")
 	ss.SliceInterface.ChangeFirstItem(str + " in the hizzle!")
 }
