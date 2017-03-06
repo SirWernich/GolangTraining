@@ -3,47 +3,54 @@ package main
 import "fmt"
 
 type Book struct {
-	index int
-	name  string
+	Index int
+	Name  string
+	Pages []string
 }
-type Magazine struct {
+type magazine struct {
 	BookInterface
 }
 
 type BookInterface interface {
 	ReadBook()
+	setIndex(int)
 }
 
 func main() {
-	myBook := createBook(32, "the best book")
-	myMagazine := createBook(32, "the ok book")
+	myBook := createBook(32, "the best book", []string{"one", "two", "three"})
+	myMagazine := createMagazine(myBook)
 
-	fmt.Println(myBook)
+	fmt.Printf("myBook:\t%T\n", myBook)
+	fmt.Printf("&myBook:\t%p\n", &myBook)
+	fmt.Printf("&myMagazine:\t%p\n", &myMagazine)
+	fmt.Printf("myMagazine:\t%T\n", myMagazine)
 	fmt.Println(myMagazine)
+
+	myMagazine.setIndex(99)
+
+	fmt.Println("myMagazine: ", myMagazine)
+	fmt.Println("myBook: ", myBook)
 }
 
-func myIntFunc(i int) int {
-	j := 34
-
-	if i > 10 {
-		j *= 2
-	} else {
-		j *= 3
-	}
-
-	return j
+func createBook(idx int, nm string, pgs []string) Book {
+	return Book{idx, nm, pgs}
 }
 
-func createBook(idx int, nm string) Book {
-	idx = myIntFunc(idx)
-	tempBook := Book{idx, nm}
-	return tempBook
+func (m magazine) setIndex(idx int) {
+	fmt.Println("setting magazine index")
+	m.BookInterface.setIndex(idx * 2)
+}
+
+func (b Book) setIndex(idx int) {
+	fmt.Println("setting book index")
+	b.Pages[0] = fmt.Sprintf("%d", idx)
+	b.Name = "banana!"
 }
 
 func createMagazine(b BookInterface) BookInterface {
-	return &Magazine{b}
+	return &magazine{b}
 }
 
 func (b Book) ReadBook() {
-	fmt.Println(b.name)
+	fmt.Println(b.Name)
 }
