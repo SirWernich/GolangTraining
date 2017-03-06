@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	n := 1000
+	n := 100
 	c := make(chan int)
 	done := make(chan bool)
 
@@ -24,6 +24,6 @@ func main() {
 	}()
 
 	for n := range c {
-		fmt.Println(n)
+		fmt.Print(n)
 	}
 }
