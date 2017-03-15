@@ -3,6 +3,7 @@
 *.a
 *.s
 *.so
+*.exe
 *.out
 
 # Folders
