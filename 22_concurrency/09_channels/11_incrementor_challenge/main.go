@@ -23,7 +23,7 @@ func incrementor(s string) {
 		<-lock
 		temp := <-count
 		temp++
-		fmt.Println("Process: "+s+" printing:", temp)
+		fmt.Println("Process: "+s+" printing:", i)
 		count <- temp
 		lock <- true
 	}

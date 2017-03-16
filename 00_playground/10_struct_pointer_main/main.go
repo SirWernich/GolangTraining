@@ -10,7 +10,7 @@ type StringSlice []string
 
 func main() {
 	mySliceType := StringSlice{"apple", "grape", "avocado"}
-	myStruct := struct_pointer.MakeStruct(mySliceType)
+	myStruct := structpointer.MakeStruct(mySliceType)
 
 	fmt.Printf("mySliceType:\t%p\n", &mySliceType) // not the same memory address as
 	fmt.Printf("myStruct:\t%p\n", &myStruct)       // this one, so not the same object

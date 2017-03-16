@@ -1,4 +1,4 @@
-package struct_pointer
+package structpointer
 
 import "fmt"
 
