@@ -1,28 +1,33 @@
 package main
 
-import (
-	"fmt"
-	"sync"
-	"sync/atomic"
-)
+import "fmt"
 
-var count int64
-var wg sync.WaitGroup
+var lock = make(chan bool, 1)
+var wait = make(chan bool)
+var count = make(chan int, 1)
 
 func main() {
-	wg.Add(2)
+	count <- 0
+	lock <- true
 	go incrementor("1")
 	go incrementor("2")
-	wg.Wait()
-	fmt.Println("Final Counter:", count)
+
+	<-wait
+	<-wait
+
+	fmt.Println("Final Counter:", <-count)
 }
 
 func incrementor(s string) {
 	for i := 0; i < 20; i++ {
-		atomic.AddInt64(&count, 1)
-		fmt.Println("Process: "+s+" printing:", i)
+		<-lock
+		temp := <-count
+		temp++
+		fmt.Println("Process: "+s+" printing:", temp)
+		count <- temp
+		lock <- true
 	}
-	wg.Done()
+	wait <- true
 }
 
 /*
